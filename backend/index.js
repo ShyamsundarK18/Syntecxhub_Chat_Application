@@ -33,8 +33,8 @@ app.use("/api/messages", messageRoutes);
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    // Explicit string catch-all
-    app.get("/*", (req, res) => {
+    // Catch-all route for SPA
+    app.get(/.*/, (req, res) => {
         res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
     });
 
